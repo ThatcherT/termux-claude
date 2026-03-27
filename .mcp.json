@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "desktop-channel": {
+      "command": "node",
+      "args": ["./desktop-channel/channel.mjs"]
+    }
+  }
+}
