@@ -16,7 +16,7 @@ echo "Phone-channel is down. SSHing in to start it..."
 
 # Kill any stale session, start fresh
 phone_ssh 'tmux kill-session -t claude 2>/dev/null || true'
-phone_ssh 'tmux new-session -d -s claude "cd ~/phone-channel && node channel.mjs | claude --dangerously-load-development-channels server:phone-channel"'
+phone_ssh 'tmux new-session -d -s claude "cd ~/phone-channel && bash sms-watcher.sh & node channel.mjs | claude --dangerously-load-development-channels server:phone-channel"'
 
 echo "Waiting for phone-channel to come up..."
 for i in $(seq 1 30); do
