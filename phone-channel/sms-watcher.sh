@@ -64,7 +64,11 @@ for m in msgs:
         is_self = str(msg_type) == '1'
 
     if is_self:
-        new_msgs.append({'id': msg_id, 'body': m.get('body', '')})
+        body = m.get('body', '')
+        # Skip agent-sent messages (conversation providers prefix outbound SMS)
+        if body.startswith('[') and ']' in body[:30]:
+            continue
+        new_msgs.append({'id': msg_id, 'body': body})
 
 print(json.dumps({'max_id': max_id, 'messages': new_msgs}))
 " "$LAST_ID" "$OWN_NUMBER" <<< "$SMS_JSON" 2>/dev/null) || continue
