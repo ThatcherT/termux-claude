@@ -56,7 +56,7 @@ const mcp = new Server(
       'or is just a note/reminder (buy milk, call dentist).',
       '',
       'For tasks: spawn on desktop via SSH:',
-      '  ssh 100.99.44.89 "python /home/thatcher/projects/nov/projects/plugins/providers/taskpilot/spawner_cli.py \'<description>\'"',
+      '  ssh 100.99.44.89 "python /home/thatcher/projects/softwaresoftware/projects/plugins/providers/taskpilot/spawner_cli.py \'<description>\'"',
       'Parse the JSON response. On success, notify:',
       '  termux-notification --title "TaskPilot: <task_id>" --content "Spawned on port <port>"',
       'On failure or desktop unreachable:',
