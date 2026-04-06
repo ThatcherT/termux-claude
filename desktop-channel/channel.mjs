@@ -91,8 +91,6 @@ mcp.setRequestHandler(CallToolRequestSchema, async (req) => {
 await mcp.connect(new StdioServerTransport())
 
 // --- HTTP server on 0.0.0.0:8789 (reachable via Tailscale) ---
-let nextId = 1
-
 const httpServer = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`)
 
@@ -123,7 +121,7 @@ const httpServer = http.createServer(async (req, res) => {
     for await (const chunk of req) chunks.push(chunk)
     const body = Buffer.concat(chunks).toString()
 
-    const chat_id = String(nextId++)
+    const chat_id = crypto.randomUUID().slice(0, 8)
     await mcp.notification({
       method: 'notifications/claude/channel',
       params: {
